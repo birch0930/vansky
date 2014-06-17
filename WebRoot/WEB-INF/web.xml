@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+  <display-name></display-name>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>GetList</servlet-name>
+    <servlet-class>com.news.parser.GetList</servlet-class>
+  </servlet>
+
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>GetContent</servlet-name>
+    <servlet-class>com.news.parser.GetContent</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>NewsEdit</servlet-name>
+    <servlet-class>com.news.release.NewsEdit</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>NewsDel</servlet-name>
+    <servlet-class>com.news.release.NewsDel</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>NewsSearch</servlet-name>
+    <servlet-class>com.news.release.NewsSearch</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>NewsRelease</servlet-name>
+    <servlet-class>com.news.release.NewsRelease</servlet-class>
+  </servlet>
+
+
+
+
+
+
+
+  <servlet-mapping>
+    <servlet-name>GetList</servlet-name>
+    <url-pattern>/servlet/GetList</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>GetContent</servlet-name>
+    <url-pattern>/servlet/GetContent</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>NewsEdit</servlet-name>
+    <url-pattern>/servlet/NewsEdit</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>NewsDel</servlet-name>
+    <url-pattern>/servlet/NewsDel</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>NewsSearch</servlet-name>
+    <url-pattern>/servlet/NewsSearch</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>NewsRelease</servlet-name>
+    <url-pattern>/servlet/NewsRelease</url-pattern>
+  </servlet-mapping>
+  
+	
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+  
+   <resource-ref>    
+		<description>DB Connection test</description>    
+		<res-ref-name>jdbc/mysqldb</res-ref-name>    
+		<res-type>javax.sql.DataSource</res-type>    
+		<res-auth>Container</res-auth>    
+	</resource-ref>   
+</web-app>
+
