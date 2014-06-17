@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<selectors>
+
+	<selector source="wenxuecity">
+		<link>.list a</link>
+		<title>.mainwrapper h3</title>
+		<sourceTime>#postmeta time</sourceTime>
+		<sourceTimeRegex></sourceTimeRegex>
+		<img>img[src]</img>
+		<content>.article</content>
+	</selector>
+	<selector source="singtao">
+		<link>a[href~=http://news.singtao.ca/vancouver/[12]\d{3}.(0\d|1[0-2]).([0-2]\d|3[01]).[\w]{26}.html$]</link>
+		<title>#title h3</title>
+		<sourceTime>#title p:nth-child(1)</sourceTime>
+		<sourceTimeRegex></sourceTimeRegex>
+		<img></img>
+		<content>.content</content>
+	</selector>
+	<selector source="mingpao">
+		<link>.f</link>
+		<title></title>
+		<sourceTime></sourceTime>
+		<sourceTimeRegex></sourceTimeRegex>
+		<img></img>
+		<content></content>
+	</selector>
+	<selector source="bcbay">
+		<link>a[href~=newsViewer.php.nid=[\d]{6}&amp;id=[\d]{6}]</link>
+		<title>#title</title>
+		<sourceTime>.margin02 td:nth-child(3) table:nth-child(1) tr :nth-child(3) td</sourceTime>
+		<sourceTimeRegex>^20\d{2}-\d{2}-\d{2} (?:[01]\d|2[0-3])(?::[0-5]\d){2}$</sourceTimeRegex>
+		<img>img</img>
+		<content>.margin02 td:nth-child(3) table:nth-child(2)</content>
+	</selector>
+	
+	
+	<selector source="gcpnews">
+		<link>a[href~=articles/[12]\d{3}.(0\d|1[0-2]).([0-2]\d|3[01]).[\w]{5}.[\d]{6}.html$]	</link>
+		<title>table tr table tr td:nth-child(3) table:nth-child(3) font:nth-child(1)</title>
+		<sourceTime>table tr table tr td:nth-child(3) table:nth-child(3) font:nth-child(2)</sourceTime>
+		<sourceTimeRegex></sourceTimeRegex>
+		<img>img</img>
+		<content>table tr table tr td:nth-child(3) table:nth-child(3) tr:nth-child(2)</content>
+	</selector>
+	
+	<selector source="ifeng">
+		<link>a[href~=http://news.ifeng.com/a/[12]\d{3}(0\d|1[0-2])([0-2]\d|3[01]).[\d]{8}_[\d].shtml$]</link>
+		<title>#artical #artical_topic</title>
+		<sourceTime>.ss01</sourceTime>
+		<sourceTimeRegex></sourceTimeRegex>
+		<img>.detailPic img[src]</img>
+		<content>#main_content</content>
+	</selector>
+	
+	<selector source="zaobao">
+		<link>.f</link>
+		<title></title>
+		<sourceTime></sourceTime>
+		<sourceTimeRegex></sourceTimeRegex>
+		<img></img>
+		<content></content>
+	</selector>
+	
+	<selector source="worldjournal">
+		<link>a[href~=^/view/full_aInternational[^\s]*]</link>
+		<title>.story_item_headline</title>
+		<sourceTime>.signature_line .story_item_date </sourceTime>
+		<sourceTimeRegex></sourceTimeRegex>
+		<img>.image_img</img>
+		<content>.entry-content</content>
+	</selector>
+	
+	<selector source="reuters">
+		<link>a[href~=/article/CN[\w]{0,}News.[\w]{0,}]</link>
+		<title>.contentBand:has(h1) h1</title>
+		<sourceTime>.timestampHeader</sourceTime>
+		<sourceTimeRegex></sourceTimeRegex>
+		<img>#img</img>//没有照片
+		<content>#resizeableText</content>
+	</selector>
+	
+	<selector source="lahoo">
+		<link>a[href~=http://www.lahoo.ca/portal.php.mod=view&amp;aid=[\d]{0,}$]</link>
+		<title>#ct .ph</title>
+		<sourceTime>#ct .xg1</sourceTime>
+	<sourceTimeRegex></sourceTimeRegex>
+		<img>img</img>
+		<content>#article_content</content>
+	</selector>
+	
+</selectors>

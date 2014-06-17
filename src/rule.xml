@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<news>
+	<new source="wenxuecity">
+		<web-name>文学城</web-name>
+		<url>http://www.wenxuecity.com/</url>
+		<urlFilter>http://www.wenxuecity.com/news/more/?page=1</urlFilter>
+		<newsType></newsType>
+	</new>
+	<new source="singtao">
+		<web-name>星岛日报</web-name>
+		<url>http://news.singtao.ca/vancouver/</url>
+		<urlFilter>http://news.singtao.ca/vancouver/</urlFilter>
+		<newsType>体育</newsType>
+	</new>
+	<new source="mingpao">
+		<web-name>明报</web-name>
+		<url>http://sports.163.com/</url>
+		<urlFilter>http://sports.163.com/yyyy/mmdd/[\d]+/[\w]+.html</urlFilter>
+		<newsType>体育</newsType>
+	</new>
+	<new source="bcbay">
+		<web-name>温哥华港湾</web-name>	
+		<url>http://www.bcbay.com/news/</url>
+		<urlFilter>http://www.bcbay.com/news/</urlFilter>
+		<newsType>军事</newsType>
+	</new>
+	<new source="gcpnews">
+		<web-name>环球华网</web-name>
+		<url>http://www.gcpnews.com/</url>
+		<urlFilter>http://www.gcpnews.com/</urlFilter>
+		<newsType>加国</newsType>
+	</new>
+	
+	<new source="ifeng">
+		<web-name>凤凰网</web-name>
+		<url>http://news.ifeng.com/</url>
+		<urlFilter>http://news.ifeng.com/</urlFilter>
+		<newsType>军事</newsType>
+	</new>
+	
+	<new source="zaobao">
+		<web-name>联合早报</web-name>
+		<url>http://www.zaobao.com/</url>
+		<urlFilter>http://mili.cn.yahoo.com/ypen/yyyymmdd/[\d]+.html</urlFilter>
+		<newsType>军事</newsType>
+	</new>
+	
+	<new source="worldjournal">
+		<web-name>世界新闻网</web-name>
+		<url>http://www.worldjournal.com/</url>
+		<urlFilter>http://www.worldjournal.com/aInternational</urlFilter>
+		<newsType>军事</newsType>
+	</new>
+	
+	<new source="reuters">
+		<web-name>路透</web-name>
+		<url>http://cn.reuters.com/</url>
+		<urlFilter>http://cn.reuters.com/</urlFilter>
+		<newsType>军事</newsType>
+	</new>
+	
+	<new source="lahoo">
+		<web-name>乐活网</web-name>
+		<url>http://www.lahoo.ca/</url>
+		<urlFilter>http://www.lahoo.ca/life/news/index.php</urlFilter>
+		<newsType>加国</newsType>
+	</new>
+	
+	
+</news>
