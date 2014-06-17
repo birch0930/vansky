@@ -1,0 +1,73 @@
+2014-05-22
+task 1: 查找新闻抓取系统
+	要求：通用性强，能抓取各种新闻网站内容图片等，存入后台MYSQL数据库中。
+			对比性能等特性。
+			
+	方法一：jsoup
+	方法二：htmlparser
+
+2014-05-23
+      解决：题目，内容， 图片链接的获取
+      未解决： 图片下载（路径问题），在html中图片路径的修改
+2014-05-26
+      解决：基本操作页面，存入数据库 读取返回页面
+2014-05-27
+      解决：中文乱码问题
+	经验：数据库连接url 添加参数?characterEncoding=utf-8
+2014-05-28
+      解决:初步解决用xml文件配置规则
+	new: replaceAll,dom4j,PreparedStatement
+		xml中& 替换成  &amp; 
+            > 替换成  &gt;
+			< 替换成  &lt; 
+			" 替换成  &quot; 
+			' 替换成  &apos; 
+
+      待解决：重复和垃圾链接，提示信息
+2014-05-28
+	   解决:以table layout的网站新闻摘取
+
+2014-05-29
+	new:jquery each()
+	问题：路透图片 zaobao, mingpao
+	
+	SET character_set_client = utf8;
+SET character_set_results = utf8;
+SET character_set_connection = utf8;
+
+2014-06-02
+	 解决: .<a href='javascript:void(0);'></a>。
+       当你的<a>标签的href属性为空时，最好这么写：<a href='javascript:void(0);' >...</a>.
+       如果你这么写：<a href=' '></a>，FF很有可能抛出这样一个错误：
+       prompt aborted by user
+       [在此错误处中断]  
+       throw Components.Exception("prompt aborted by user", Cr.NS_ERROR_NOT_AVAILABLE)	
+
+	DI denpendency injection
+	IoC inverse of control
+
+2014-06-03
+java.sql.SQLException: Before start of result set解决方法
+今天做东西的时候发现这个错误，查了查，特地记下来，以后开始积累了 哈哈 解决发法是：
+使用rs.getString();前一定要加上rs.next();
+原因：ResultSet对象代表SQL语句执行的结果集，维护指向其当前数据行的光标。每调用一次next()方法，光标向下移动一行。
+最初它位于第一行之前，因此第一次调用next()应把光标置于第一行上，使它成为当前行。
+随着每次调用next()将导致光标向下移动一行。在ResultSe对象及其t父辈Statement对象关闭之前，光标一直保持有效。
+console.log();
+
+
+6.11
+
+连接池泄漏
+Proxy IvocationHandler 动态代理
+
+
+6.13
+Servelt 
+<init-param> servlet use
+this.getServletConfig().getInitParameter("");
+jsp config.getServletConfig().getInitParameter("");		
+<context-param> 
+	context use 
+	this.getServletConfig().getServletContext().getInitParameter("");
+ jsp : config.getServletConfig().getServletContext().getInitParameter("");
