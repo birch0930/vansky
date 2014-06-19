@@ -1,8 +1,24 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page  import="com.news.model.*" %>
+<%@ page  import="com.news.service.*" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 request.setCharacterEncoding("utf-8");
+String id = request.getParameter("id");
+String title = "";
+String content = "";
+
+if( id == null || id.equals("") ){
+	title = request.getParameter("title");
+	content = request.getParameter("content");
+}else{
+	NewsService service = new NewsService();
+	NewsBean news = service.readNewsById(Integer.parseInt((id)));
+	title = news.getTitle();
+	content = news.getContent();
+}
+
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -10,7 +26,7 @@ request.setCharacterEncoding("utf-8");
   <head>
     <base href="<%=basePath%>">
     
-    <title><%=request.getParameter("title") %></title>
+    <title><%=title %></title>
     <meta charset="utf-8">
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -25,8 +41,8 @@ request.setCharacterEncoding("utf-8");
   
   <body>
  	<div class="container showpage">
-  		<%=request.getParameter("title") %>
-  	<div class="content"><%=request.getParameter("content") %></div>
+  		<%=title %>
+  	<div class="content"><%=content %></div>
   	</div>
   </body>
 </html>

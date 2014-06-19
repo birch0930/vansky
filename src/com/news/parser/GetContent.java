@@ -7,9 +7,16 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 
+import java.net.SocketTimeoutException;
 import java.net.URL;
 
+import java.text.ParseException;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Enumeration;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -96,7 +103,7 @@ public class GetContent extends HttpServlet {
 			for (String sourceUrl : sourceArr) {
 			
 				try{
-				NewsBean news = getNewsByJsoup(sourceUrl);
+				NewsBean news = getNewsByJsoup(sourceUrl,request);
 				if (news != null)
 				
 					newsService.saveNews(news);
@@ -115,13 +122,16 @@ public class GetContent extends HttpServlet {
 	/**
 	 * 使用jsoup来对文档分析 获取目标内容所在的目标层 这个目标层可以是div，table，tr等等
 	 */
-	public NewsBean getNewsByJsoup(final String url) throws HttpStatusException {
+	public NewsBean getNewsByJsoup(final String url, HttpServletRequest request) throws HttpStatusException {
+		String path = request.getContextPath();
+		String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 		NewsBean news = new NewsBean();
 		String imgNamePrefix = ""; // 新闻采集时间-系统时间
-		String destinationFile = "E:\\apache-tomcat-7.0.53\\webapps\\vansky\\pics\\"
-				+ source + "\\";
+		String destinationFile = this.getServletContext().getRealPath("pics")
+				+"\\"+ source + "\\";
 		String article = "";
 		Document doc;
+
 		RuleXmlParser ruleXmlParser = new RuleXmlParser();
 		SelectorXmlParser selectorXmlParser = new SelectorXmlParser();
 		Selector selector = selectorXmlParser.getSelectorBySource(source);
@@ -129,21 +139,33 @@ public class GetContent extends HttpServlet {
 
 		try {
 			
-			doc = Jsoup.connect(url).timeout(3000).get();
+			
+				doc = Jsoup.connect(url).timeout(3000).get();
+			
 			if (!doc.hasText())
 				return null;
 			news.setTitle(doc.select(selector.getTitleSelector()).text());
 			String sourceTime = doc.select(selector.getSourceTimeSelector())
 					.text();
 			
-			news.setSourceTime(sourceTime);
-
+			SimpleDateFormat sdf = new SimpleDateFormat(selector.getSourceTimeRegex());
+			
+			sourceTime =sourceTime.replaceAll("[^\\w\\:\\-\\s]", "");
+			Date date = new Date();
+			
+				try {
+					date = sdf.parse(sourceTime);
+				} catch (ParseException e1) {
+					System.out.println("date format problem");
+				}
+			
+			news.setSourceTime(date);
 			Elements contentElements = doc
 					.select(selector.getContentSelector());
 			article = contentElements.toString();
 
 			// 设置照片名字前缀
-			imgNamePrefix = news.getSourceTime().replaceAll("\\D", "");
+			imgNamePrefix = sourceTime.replaceAll("\\D", "");
 
 			Elements imgElements = null;
 
@@ -159,8 +181,9 @@ public class GetContent extends HttpServlet {
 					if (e.attr("src").indexOf("http://") == -1)
 						src = ruleXmlParser.getRuleBySource(source).getUrl() + e.attr("src");													
 					saveImage(src, destinationFileName);
+					
 					article = article.replace(e.attr("src"),
-							"http://localhost:8080/vansky/pics/" + source + "/"
+							basePath+"pics/" + source + "/"
 									+ imgNamePrefix + i + suffix);
 					
 					i++;
@@ -169,7 +192,10 @@ public class GetContent extends HttpServlet {
 			news.setContent(article);
 			news.setSourceWebsite(source);
 
-		} catch (IOException e) {
+		} catch (SocketTimeoutException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

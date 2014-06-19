@@ -24,6 +24,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <input type="hidden" id="id" name="id" value="<%= news.getNewsId() %>">
 <label for="title">题目:</label>
 <input type="text" id="title" name="title" size="80" value="<%= news.getTitle() %>">
+<label for="sourceTime">时间:</label>
+<input type="date" id="sourceTime" name="sourceTime" size="80" value="<%= news.getSourceTime().toString() %>">
 <div id="saved" class="hideDiv alert">保存成功</div>
 <div id="unsaved" class="hideDiv alert">保存失败</div>
 <label for="content">内容:</label>
@@ -31,10 +33,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript">
            replaceTextarea();     
 	</script>
-<input type='button' class="button" id="preview" value="Preview" onclick="view()">
+<input type='button' class="button" id="preview" value="Preview" onclick="previewNews()">
 
 <input type='button' class="button" id="save" value="Save" onclick="saveBack()">
-<input type='button' class="button" id="release" value="Release" onclick="releaseNews()">
+<input type='button' class="button" id="release" value="Release" onclick="releaseNews(<%= news.getNewsId() %>)">
 </fieldset>
 
 </form>

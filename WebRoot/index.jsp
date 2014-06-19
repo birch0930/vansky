@@ -35,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="left">
        <ul class="nav">
         <li><a href="index.jsp">新闻采集</a></li>
-        <li><a href="javascript:void(0);" onclick="pagechange(name)" name="release">新闻发布</a></li>
+        <li><a href="javascript:void(0);" onclick="pagechange(name)" name="release">新闻编辑</a></li>
         
       </ul>
     </div>
@@ -50,11 +50,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <ul>
         <li><label for="wenxuecity"><input type='checkbox' value="wenxuecity" id="wenxuecity">文学城</label></li>
         <li><label for="singtao"><input type='checkbox'  value="singtao" id="singtao">星岛日报</label></li>
-        <li><label for="mingpao"><input type='checkbox' id="mingpao">明报</label></li>
+       <!--   <li><label for="mingpao"><input type='checkbox' id="mingpao">明报</label></li>-->
         <li><label for="bcbay"><input type='checkbox' id="bcbay">温哥华港湾</label></li>
         <li><label for="gcpnews"><input type='checkbox' id="gcpnews">环球华网</label></li>
         <li><label for="ifeng"><input type='checkbox' id="ifeng">凤凰网</label></li>
-        <li><label for="zaobao"><input type='checkbox' id="zaobao">联合早报</label></li>
+        <!--  <li><label for="zaobao"><input type='checkbox' id="zaobao">联合早报</label></li> -->
         <li><label for="worldjournal"><input type='checkbox' id="worldjournal">世界新闻网</label></li>
         <li><label for="reuters"><input type='checkbox' id="reuters">路透</label></li>
         <li><label for="lahoo"><input type='checkbox' id="lahoo">乐活网</label></li>

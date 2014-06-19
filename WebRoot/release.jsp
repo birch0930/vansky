@@ -1,4 +1,4 @@
-<!doctype html>
+
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page  import="com.news.service.*" %>
 <%@ page  import="com.news.model.*" %>
@@ -69,6 +69,7 @@ if(strPageNo== null || strPageNo.equals("")){
 	return; 
 	} %>
 <div id="showTable">
+
 	<table class="pure-table">
     <thead>
         <tr>
@@ -78,21 +79,25 @@ if(strPageNo== null || strPageNo.equals("")){
             <th><center>操作</center></th>
         </tr>
     </thead>
-
+<form action="" method="get" id="releaseform" name="releaseform"><input type="hidden"  name="passid" >
     <tbody style="font-weight:normal">
     	<%     	  	
     	for(NewsBean news :list){     	   		
     	%>
         <tr>        		
-            <td><%= news.getNewsId() %></td>
-            <td><%= news.getTitle() %></td>
-            <td><%= str[news.getStatus()] %></td>
-			<td><a href="javascript:void(0);" onclick="modify(<%= news.getNewsId() %>)" >编辑</a>
+            <td><input type='checkbox' value="<%= news.getNewsId() %>" name="id"  id="<%= news.getNewsId() %>" ></td>
+            <td><label for="<%= news.getNewsId() %>"><%= news.getTitle() %></label></td>
+            <td><center><%= str[news.getStatus()] %></center></td>
+			<td><a href="javascript:void(0); id="preview" onclick="previewNews(<%= news.getNewsId() %>)" >预览</a>
+			<a href="javascript:void(0);" onclick="modify(<%= news.getNewsId() %>)" >编辑</a>
+			<a href="javascript:void(0);"  onclick="revokeNews(<%= news.getNewsId() %>)">撤回</a>
 			<a href="javascript:void(0);"  onclick="deleteNews(<%= news.getNewsId() %>)">删除</a></td>
         </tr>
 	<% }%>
     </tbody>
-</table>   
+</table>  
+
+<!-- 分页  -->
 		<div>		
 		 <ul class="pagination pagination-sm" >
 			<li><a href="javascript:void(0)" onclick="javascript:turnpage(-1,'release')">&laquo;</a></li>
@@ -131,6 +136,10 @@ if(strPageNo== null || strPageNo.equals("")){
 					
 			<input id="currentPage" name="pagination.currentPage" type="hidden" value="<%= currentPage %>"/>
 		</div>
+<!-- 分页结束  -->
+<input type='button' class="button" id="release" value="Release" onclick="releaseMultipleNews()">
+</form>
+
 	</div>		
 
 </div>

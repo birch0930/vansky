@@ -15,7 +15,7 @@
 	<new source="mingpao">
 		<web-name>明报</web-name>
 		<url>http://sports.163.com/</url>
-		<urlFilter>http://sports.163.com/yyyy/mmdd/[\d]+/[\w]+.html</urlFilter>
+		<urlFilter>http://inews.mingpao.com/rss/INews/all.xml</urlFilter>
 		<newsType>体育</newsType>
 	</new>
 	<new source="bcbay">
@@ -62,7 +62,7 @@
 	<new source="lahoo">
 		<web-name>乐活网</web-name>
 		<url>http://www.lahoo.ca/</url>
-		<urlFilter>http://www.lahoo.ca/life/news/index.php</urlFilter>
+		<urlFilter>http://www.lahoo.ca/</urlFilter>
 		<newsType>加国</newsType>
 	</new>
 	

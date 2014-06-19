@@ -2,17 +2,18 @@ package com.news.service;
 
 import java.io.File;
 import java.sql.Connection;
-import java.sql.Date;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 
 import com.news.model.NewsBean;
 import com.tool.db.DB;
-import com.tool.db.DB;
+
 
 public class NewsService {
 	PreparedStatement pstmt = null;
@@ -31,8 +32,8 @@ public class NewsService {
 				pstmt.setString(1, null);
 				pstmt.setString(2, n.getTitle());
 				pstmt.setString(3, n.getContent());
-				pstmt.setDate(4, new Date(System.currentTimeMillis()));
-				pstmt.setDate(5, new Date(System.currentTimeMillis()));
+				pstmt.setTimestamp(4, new Timestamp(n.getSourceTime().getTime()));   //新闻来源时间	
+				pstmt.setTimestamp(5, new Timestamp(System.currentTimeMillis()));//新闻采集时间
 				pstmt.setString(6, n.getSourceWebsite());
 				pstmt.setString(7, n.getSourceUrl());
 				pstmt.setInt(8, n.getStatus());
@@ -116,15 +117,7 @@ public class NewsService {
 			pstmt.setInt(2, pageSize);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				NewsBean news = new NewsBean();
-				news.setNewsId(rs.getInt("news_id"));
-				news.setTitle(rs.getString("title"));
-				news.setContent(rs.getString("content"));
-				news.setSourceUrl(rs.getString("sourceUrl"));
-				news.setSourceTime(rs.getDate("extractdate").toString());
-				news.setSourceWebsite(rs.getString("news_from"));
-				news.setStatus(rs.getInt("status"));
-				list.add(news);
+				list.add(initNews(rs));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -148,13 +141,7 @@ public class NewsService {
 			rs = conn.createStatement().executeQuery(sql);
 			if (rs.next()) {
 
-				news.setNewsId(rs.getInt("news_id"));
-				news.setTitle(rs.getString("title"));
-				news.setContent(rs.getString("content"));
-				news.setSourceUrl(rs.getString("sourceUrl"));
-				news.setSourceTime(rs.getDate("extractdate").toString());
-				news.setSourceWebsite(rs.getString("news_from"));
-				news.setStatus(rs.getInt("status"));
+				news = initNews(rs);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -184,15 +171,7 @@ public class NewsService {
 			pstmt.setInt(4, pageSize);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				NewsBean news = new NewsBean();
-				news.setNewsId(rs.getInt("news_id"));
-				news.setTitle(rs.getString("title"));
-				news.setContent(rs.getString("content"));
-				news.setSourceUrl(rs.getString("sourceUrl"));
-				news.setSourceTime(rs.getDate("extractdate").toString());
-				news.setSourceWebsite(rs.getString("news_from"));
-				news.setStatus(rs.getInt("status"));
-				list.add(news);
+				list.add(initNews(rs));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -378,5 +357,26 @@ public class NewsService {
         
         return flag;
     }
+    
+    
+    public NewsBean initNews(ResultSet rs){
+    	NewsBean news = new NewsBean();
+    	try {
+    	news.setNewsId(rs.getInt("news_id"));
+		news.setTitle(rs.getString("title"));
+		news.setContent(rs.getString("content"));
+		news.setSourceUrl(rs.getString("sourceUrl"));
+		news.setSourceTime(rs.getDate("sourcedate"));
+		news.setCollectTime(rs.getDate("collectdate"));
+		news.setSourceWebsite(rs.getString("news_from"));
+		news.setStatus(rs.getInt("status"));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return news;
+	}
+
+
 
 }

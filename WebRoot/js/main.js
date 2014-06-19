@@ -128,9 +128,13 @@ function showPopup(){
 	}
 
 	
-	function view(){
-		document.f.action="./showpage.jsp";
-		document.f.submit();
+	function previewNews(id){
+		if(id == undefined){
+			document.f.action="./showpage.jsp";
+			document.f.submit();
+		}else{
+			window.open('./showpage.jsp?id='+id);
+		}
 		
 	}
 	function saveBack(){
@@ -156,16 +160,37 @@ function showPopup(){
 		
 		});
 	}
+	
+	// add text editor
 	function replaceTextarea(){
 		 CKEDITOR.replace('content');     
 	}
-	function releaseNews(){
+	
+	//multiple news release
+	function releaseMultipleNews(){
+		$("input:checkbox:checked").each(function(){
+			releaseNews($(this).val());
+			
+		 });
+	}
+	
+	//revoke news
+	function revokeNews(id){
+		$.get("servlet/NewsRevoke",
+				 {id:id},	 
+				 function(data){
+					 $(".result").html(data);	
+			});
+	}
+	
+	// one news release 
+	function releaseNews(id){
 		$.post("servlet/NewsRelease",
-		{id:$("#id").val()},
+		{id:id},
 		
 		function(data,status){
 			if(status=="success"){
-				alert("发布成功！");
+				
 				$(".result").html(data);
 
 			}

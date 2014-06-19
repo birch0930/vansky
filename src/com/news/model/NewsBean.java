@@ -2,6 +2,7 @@ package com.news.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -15,7 +16,8 @@ public class NewsBean implements Serializable{
 	private String sourceUrl =""; 		//新闻网站
 	private String sourceWebsite="";
 	private String title = ""; 			//新闻标题
-	private String sourceTime = "";		//新闻来源时间		
+	private Date sourceTime ;		//新闻来源时间		
+	private Date collectTime ;		//新闻采集时间	
 	private String Content = "";		//新闻内容
 	private int status = 0;		//新闻内容
 	private List<String> imgList  ;		
@@ -47,13 +49,14 @@ public class NewsBean implements Serializable{
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getSourceTime() {
+	
+
+	public Date getSourceTime() {
 		return sourceTime;
 	}
-	public void setSourceTime(String sourceTime) {
+	public void setSourceTime(Date sourceTime) {
 		this.sourceTime = sourceTime;
 	}
-
 	public String getContent() {
 		return Content;
 	}
@@ -73,6 +76,14 @@ public class NewsBean implements Serializable{
 	public void setNewsId(int s) {
 		this.newsId = s;
 	}
+	public Date getCollectTime() {
+		return collectTime;
+	}
+	public void setCollectTime(Date collectTime) {
+		this.collectTime = collectTime;
+	}
 
+	
+	
   
 }
